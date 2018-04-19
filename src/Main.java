@@ -63,7 +63,20 @@ public class Main {
      * @param hi the index of the last element in the range + 1.
      */
     public static void sort(ArrayList<Integer> arrayList, int lo, int hi) {
-        throw new UnsupportedOperationException("sort() has not been implemented yet");
+        int[] sorted;
+        sorted = new int[mid-lo+1];
+        for(int i=0; i <arrayList.get(mid+1); i++)
+        {
+            if (arrayList.get(i)<=arrayList.get(0))
+            {
+                int min = arrayList.get(i);
+                sorted.add(i);
+            }
+            if(arrayList.get(i)<=arrayList.get(0))
+            {
+                int min = arrayList.get(i);
+            }
+        }
     }
 
     /**
@@ -77,6 +90,33 @@ public class Main {
      * @param hi the index of the last element in the second range + 1.
      */
     public static void merge(ArrayList<Integer> arrayList, int lo, int mid, int hi) {
-        throw new UnsupportedOperationException("merge() has not been implemented yet");
+        // arrayList that is the size of the other arraylist size (high-low+1)
+        ArrayList<Integer> merge = new ArrayList<Integer>();
+        int split = (arrayList.size()/2);
+        int split2 = arrayList.get(split+=split);
+        //int[] sorted;
+        //sorted = new int[mid-lo+1];
+        for(int i=0; i <arrayList.get(mid+1); i++)
+        {
+            if (arrayList.get(i)<=arrayList.get(0))
+            {
+                int min = arrayList.get(i);
+                merge.add(min);
+            }
+            else{
+            merge.add(0);}
+        }
+        for(int j=split2; j>=split; j--)
+        {
+            if(arrayList.get(j) <= arrayList.get(split))
+            {
+                int mini = arrayList.get(j);
+                merge.add(mini);
+            }
+            else {
+            merge.add(split);
+            split++;}
+            }
+        }
     }
 }
