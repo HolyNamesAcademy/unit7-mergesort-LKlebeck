@@ -46,10 +46,9 @@ public class Main {
     public static void mergeSort(ArrayList<Integer> arrayList) {
         if(arrayList.size()==1)
         {
-            //start merging back together or sorting
+            sort(arrayList, 0, arrayList.size());
+            merge (arrayList, 0, arrayList.size()/2, arrayList.size());
         }
-        int split= arrayList.size()/2;
-
 
     }
 
@@ -63,20 +62,14 @@ public class Main {
      * @param hi the index of the last element in the range + 1.
      */
     public static void sort(ArrayList<Integer> arrayList, int lo, int hi) {
-        int[] sorted;
-        sorted = new int[mid-lo+1];
-        for(int i=0; i <arrayList.get(mid+1); i++)
+        if(hi - lo <= 1)
         {
-            if (arrayList.get(i)<=arrayList.get(0))
-            {
-                int min = arrayList.get(i);
-                sorted.add(i);
-            }
-            if(arrayList.get(i)<=arrayList.get(0))
-            {
-                int min = arrayList.get(i);
-            }
+            return;
         }
+        int mid = (hi + lo)/2;
+        sort(arrayList, lo, mid);
+        sort(arrayList, mid, hi);
+        merge(arrayList, lo, mid, hi);
     }
 
     /**
@@ -92,7 +85,36 @@ public class Main {
     public static void merge(ArrayList<Integer> arrayList, int lo, int mid, int hi) {
         // arrayList that is the size of the other arraylist size (high-low+1)
         ArrayList<Integer> merge = new ArrayList<Integer>();
-        int split = (arrayList.size()/2);
+        int i = lo;
+        int k = mid;
+        while(i<mid || k < hi)
+        {
+            if(k == hi)
+            {
+                merge.add(arrayList.get(i));
+                i++;
+            }
+            else if(i == mid)
+            {
+                merge.add(arrayList.get(k));
+                k++;
+            }
+            else if(arrayList.get(i)>arrayList.get(k))
+            {
+                merge.add(arrayList.get(k));
+                k++;
+            }
+            else
+            {
+                merge.add(arrayList.get(i));
+                i++;
+            }
+        }
+        for(int number = 0; number < merge.size(); number++)
+        {
+            arrayList.set(number + lo, merge.get(number));
+        }
+        /**int split = (arrayList.size()/2);
         int split2 = arrayList.get(split+=split);
         //int[] sorted;
         //sorted = new int[mid-lo+1];
@@ -117,6 +139,7 @@ public class Main {
             merge.add(split);
             split++;}
             }
+        */
         }
     }
-}
+
